@@ -12,6 +12,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
+import android.os.Build;
 import android.support.v4.view.animation.PathInterpolatorCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -200,7 +201,11 @@ public class ButtonLoading extends View {
 
                 canvas.getClipBounds(RectBoundCanvas);
                 RectBoundCanvas.inset(-DeviceScreenUtils.width(getContext()), -DeviceScreenUtils.height(getContext()));
-                canvas.clipRect(RectBoundCanvas, Region.Op.REPLACE);
+                if (Build.VERSION.SDK_INT >= 26) {
+                    canvas.clipRect(RectBoundCanvas);
+                }
+                
+                canvas.clipRect(RectBoundCanvas, Region.Op.UNION);
 
                 //background
                 paint.setColor(attribute.getBackgroundColor());
