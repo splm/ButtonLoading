@@ -204,6 +204,7 @@ public class ButtonLoading extends View {
                 if (Build.VERSION.SDK_INT >= 26) {
                     canvas.clipRect(RectBoundCanvas);
                 }
+                
                 canvas.clipRect(RectBoundCanvas, Region.Op.UNION);
 
                 //background
